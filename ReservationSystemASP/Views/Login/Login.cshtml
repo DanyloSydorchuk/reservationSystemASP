@@ -1,0 +1,29 @@
+﻿@model ReservationSystemASP.Models.LoginModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+    var error = TempData["Error"] as string;
+}
+<h1>Login</h1>
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger" style="padding:20px;">@error</h2>
+}
+<form method="post" asp-controller="Login" asp-action="Login">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <span asp-validation-for="Username" class="text-danger"></span>
+        <label asp-for="Username">Login</label>
+        <input class="form-control" asp-for="Username" />
+    </div>
+    <div class="mb-3">
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <label asp-for="Password">Hasło</label>
+        <input type="password" class="form-control" asp-for="Password" />
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+</form>
