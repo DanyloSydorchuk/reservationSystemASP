@@ -28,6 +28,7 @@ namespace ReservationSystemASP.Models
         [DataType(DataType.Password)]
         [Required]
         public string PasswordHash { get; set; }
+
     
         
     }

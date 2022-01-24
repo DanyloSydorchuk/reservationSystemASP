@@ -16,11 +16,11 @@ namespace ReservationSystemASP.Models
         }
         public IQueryable<SeanseModel> Seanses => _applicationDbContext.Seanses;
 
-        //public void addIssue(int seanseId, Issue issue)
+        //public void addBook(int seanseId, BookModel book)
         //{
         //    SeanseModel seanse = _applicationDbContext.Seanses.Find(seanseId);
-        //    seanse.Issue.Add(issue);
-        //    _applicationDbContext.Seanses.Update(seanse);
+        //    seanse.CountPlaces = seanse.CountPlaces - book.CountPlaces;
+        //    _applicationDbContext.Seanses.AddBookUpdate(seanse);
         //    _applicationDbContext.SaveChanges();
         //}
     }

@@ -29,21 +29,25 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
-                            
+
                             <li class="nav-item position-absolute" style="right:30%">
                                 <span class="nav-link text-dark font-weight-bolder">@User.Identity.Name</span>
                             </li>
-
+                            if (User.Identity.Name == "Admin") { 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Seanse" asp-action="Seanse">Seanse</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Seanse" asp-action="Seanse">Dodanie Seansów</a>
                             </li>
-                             
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Seanse" asp-action="FindAll">Dostępne seansy</a>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
                             </li>
-                         }
-                         else
-                         {
+                        }
+                        else
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
@@ -57,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registration</a>
                             </li>
-                         }
+                        }
                     </ul>
 
                 </div>

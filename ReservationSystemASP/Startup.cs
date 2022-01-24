@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReservationSystemASP.Models;
+using ReservationSystemASP.Models.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,9 +37,11 @@ namespace ReservationSystemASP
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration["Data:Seanses:ConnectionString"]));
+            options.UseSqlServer(Configuration["Data:ConnectionString"]));
             services.AddTransient<ISeanseRepository, EFSeanseRepository>();
             services.AddTransient<ICRUDSeanseRepository, EFCRUDSeanseRepository>();
+            services.AddTransient<IBookRepository, EFBookRepository>();
+            services.AddTransient<ICRUDBookRepository, EFCRUDBookRepository>();
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();

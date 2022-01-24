@@ -10,8 +10,8 @@ using ReservationSystemASP.Models;
 namespace ReservationSystemASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220119181031_MyMigration")]
-    partial class MyMigration
+    [Migration("20220121133943_BookinSeanses")]
+    partial class BookinSeanses
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,29 @@ namespace ReservationSystemASP.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ReservationSystemASP.Models.BookModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountPlaces")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SeanseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SeanseId");
+
+                    b.ToTable("Bookings");
+                });
 
             modelBuilder.Entity("ReservationSystemASP.Models.SeanseModel", b =>
                 {
@@ -43,6 +66,20 @@ namespace ReservationSystemASP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Seanses");
+                });
+
+            modelBuilder.Entity("ReservationSystemASP.Models.BookModel", b =>
+                {
+                    b.HasOne("ReservationSystemASP.Models.SeanseModel", "Seanse")
+                        .WithMany("Bookings")
+                        .HasForeignKey("SeanseId");
+
+                    b.Navigation("Seanse");
+                });
+
+            modelBuilder.Entity("ReservationSystemASP.Models.SeanseModel", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

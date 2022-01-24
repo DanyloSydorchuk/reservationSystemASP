@@ -9,7 +9,7 @@ namespace ReservationSystemASP.Models
     {
         IQueryable<SeanseModel> Seanses { get; }
 
-        //void addIssue(int seanseId, Issue issue);
+        //void addBook(int seanseId, BookModel book);
     }
     
 }

@@ -7,10 +7,11 @@ namespace ReservationSystemASP.Models
 {
     public interface ICRUDSeanseRepository
     {
-        SeanseModel Find(int id);
+        SeanseModel FindById(int id);
         SeanseModel Delete(int id);
         SeanseModel Add(SeanseModel seanse);
         SeanseModel Update(SeanseModel seanse);
+        //SeanseModel AddBookUpdate(SeanseModel seanse);
 
         IList<SeanseModel> FindAll();
     }

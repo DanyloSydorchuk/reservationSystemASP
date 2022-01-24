@@ -5,11 +5,11 @@
 }
 @model ReservationSystemASP.Models.SeanseModel
 
-
-
-    <h1>Dodanie seansu</h1>
-    <form method="post" asp-controller="Seanse" asp-action="Add">
+<div class="container m-3">
+    <h2>Edycja seansu</h2>
+    <form asp-action="Edit" method="post">
         <div asp-validation-summary="All"></div>
+        <input asp-for="Id" />
         <div class="mb-3">
             <span asp-validation-for="Date" class="text-danger"></span>
             <label asp-for="Date">Data</label>
@@ -31,8 +31,8 @@
             <input class="form-control" asp-for="CountPlaces" />
         </div>
         <div class="mb-3">
-            <button class="btn btn-primary" type="submit">Dodaj</button>
+            <button class="btn btn-primary" type="submit">Edytuj</button>
         </div>
-
     </form>
+</div>
 

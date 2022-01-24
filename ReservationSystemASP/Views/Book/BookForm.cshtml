@@ -1,0 +1,16 @@
+﻿@model ReservationSystemASP.Models.BookModel
+
+<div class="container m-3">
+    <h2>Rezerwacja Seansu</h2>
+    <form asp-controller="Book" asp-action="Add" method="post">
+        <input asp-for="Id" />
+        <div class="mb-3">
+            <span asp-validation-for="CountPlaces" class="text-danger"></span>
+            <label asp-for="CountPlaces">Liczba miejsc</label>
+            <input class="form-control" asp-for="CountPlaces" />
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Zarezerwuj</button>
+        </div>
+    </form>
+</div>

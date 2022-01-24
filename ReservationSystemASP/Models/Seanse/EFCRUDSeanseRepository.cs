@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,17 +12,17 @@ namespace ReservationSystemASP.Models
 
         public EFCRUDSeanseRepository(ApplicationDbContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
-        public SeanseModel Find(int id)
+        public SeanseModel FindById(int id)
         {
             return _context.Seanses.Find(id);
         }
 
         public SeanseModel Delete(int id)
         {
-            var seanse = _context.Seanses.Remove(Find(id)).Entity;
+            var seanse = _context.Seanses.Remove(_context.Seanses.Find(id)).Entity;
             _context.SaveChanges();
             return seanse;
         }
@@ -35,10 +36,23 @@ namespace ReservationSystemASP.Models
 
         public SeanseModel Update(SeanseModel seanse)
         {
-            var entity = _context.Seanses.Update(seanse).Entity;
+            SeanseModel original = _context.Seanses.Find(seanse.Id);
+            original.Date = seanse.Date;
+            original.SeanseStart = seanse.SeanseStart;
+            original.SeanseEnd = seanse.SeanseEnd;
+            original.CountPlaces = seanse.CountPlaces;
+            EntityEntry<SeanseModel> entityEntry = _context.Seanses.Update(original);
             _context.SaveChanges();
-            return entity;
+            return entityEntry.Entity;
+
         }
+
+        //public SeanseModel AddBookUpdate(SeanseModel seanse)
+        //{
+        //    EntityEntry<SeanseModel> entityEntry = _context.Seanses.Update(seanse);
+        //    _context.SaveChanges();
+        //    return entityEntry.Entity;
+        //}
 
         public IList<SeanseModel> FindAll()
         {

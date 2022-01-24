@@ -25,16 +25,50 @@ namespace ReservationSystemASP.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(SeanseModel model)
+        public IActionResult Add(SeanseModel seanse)
         {
+
             if (ModelState.IsValid)
             {
-                return View("SeanseList",repository.Add(model));
+                repository.Add(seanse);
+                return View("SeanseList",repository.FindAll());
             }
             else { 
                 return View();
             }
         }
+
+        public IActionResult FindAll()
+        {
+            return View("SeanseList", repository.FindAll());
+        }
+
+        public IActionResult Delete(int id)
+        {
+            repository.Delete(id);
+            return View("SeanseList", repository.FindAll());
+        }
+
+        public IActionResult EditForm(int id)
+        {
+            return View(repository.FindById(id));
+        }
+
+        public IActionResult Edit(SeanseModel seanse)
+        {
+            repository.Update(seanse);
+            return View("SeanseList", repository.FindAll());
+        }
+        // public IActionResult Book(SeanseModel seanse)
+        //{
+        //    return View("BookForm");
+        //}
+        //public IActionResult BookingAdd(SeanseModel seanse)
+        //{
+        //    return View("BookingList", repository.FindAll());
+        //}
+
+       
 
 
         //private static List<SeanseModel> _seanses = new List<SeanseModel>()

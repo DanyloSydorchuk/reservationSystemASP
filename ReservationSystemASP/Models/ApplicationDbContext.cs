@@ -10,6 +10,9 @@ namespace ReservationSystemASP.Models
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
        base(options){ }
+
         public DbSet<SeanseModel> Seanses { get; set; }
+
+        public DbSet<BookModel> Bookings { get; set; }
     }
 }

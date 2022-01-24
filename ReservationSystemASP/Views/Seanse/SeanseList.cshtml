@@ -1,21 +1,28 @@
-﻿@model IList<SeanseModel>
+﻿@model IList<ReservationSystemASP.Models.SeanseModel>
 <div class="container-fluid m-3">
     <h2>Lista seansów</h2>
     <table class="table">
-        @foreach (var seanse in @Model)
+        @foreach (var seanse in Model)
         {
-            <tr>
-                <td>
-                    @seanse.Date.Year - @seanse.Date.Month - @seanse.Date.Day
-                </td>
-                <td>
-                    od @seanse.SeanseStart.Hours : @seanse.SeanseStart.Minutes do @seanse.SeanseEnd.Hours : @seanse.SeanseEnd.Minutes
-                </td>
-                <td>
+        <tr>
+            <td>
+                @seanse.Date.Day.@seanse.Date.Month.@seanse.Date.Year
+            </td>
+            <td>
+                od @seanse.SeanseStart.Hours:@seanse.SeanseStart.Minutes do @seanse.SeanseEnd.Hours:@seanse.SeanseEnd.Minutes
+            </td>
+            <td>
+                Liczba miejsc: @seanse.CountPlaces
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Book" asp-action="Book" asp-route-id="@seanse.Id">Zarezerwuj</a>
+                @if (User.Identity.Name=="Admin"){
                     <a class="btn btn-primary" asp-controller="Seanse" asp-action="EditForm" asp-route-id="@seanse.Id">Edytuj</a>
                     <a class="btn btn-primary" asp-controller="Seanse" asp-action="Delete" asp-route-id="@seanse.Id">Usuń</a>
-                </td>
-            </tr>
+                }
+            </td>
+        </tr>
+            
         }
     </table>
 </div>
