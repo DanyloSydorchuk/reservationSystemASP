@@ -10,8 +10,8 @@ using ReservationSystemASP.Models;
 namespace ReservationSystemASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220121133943_BookinSeanses")]
-    partial class BookinSeanses
+    [Migration("20220125201923_mig")]
+    partial class mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,8 +34,8 @@ namespace ReservationSystemASP.Migrations
                     b.Property<int?>("SeanseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

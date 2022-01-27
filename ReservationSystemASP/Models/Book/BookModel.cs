@@ -12,7 +12,7 @@ namespace ReservationSystemASP.Models
         [HiddenInput]
         public int Id { get; set; }
         [HiddenInput]
-        public int UserId { get; set; }
+        public string UserName { get; set; }
         [HiddenInput]
         public SeanseModel Seanse { get; set; }
         [Required(ErrorMessage = "Proszę podać liczbę miejsc")]

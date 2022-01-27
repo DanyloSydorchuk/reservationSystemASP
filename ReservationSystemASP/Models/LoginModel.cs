@@ -13,16 +13,13 @@ namespace ReservationSystemASP.Models
 {
     public class LoginModel
     {
-        //public LoginModel()
-        //{
-        //    Bookings = new HashSet<BookModel>();
-        //}
+
         [HiddenInput]
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string ReturnUrl { get; set; } = "/";
-        //public ICollection<BookModel> Bookings { get; set; }
+
     }
     public class AppIdentityDbContext: IdentityDbContext<IdentityUser>
     {

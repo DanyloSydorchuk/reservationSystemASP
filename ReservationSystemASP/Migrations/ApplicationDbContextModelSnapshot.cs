@@ -32,8 +32,8 @@ namespace ReservationSystemASP.Migrations
                     b.Property<int?>("SeanseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

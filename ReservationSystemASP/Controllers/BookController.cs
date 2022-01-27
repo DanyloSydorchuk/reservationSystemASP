@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using ReservationSystemASP.Models;
 using ReservationSystemASP.Models.Book;
 using System;
@@ -19,14 +21,19 @@ namespace ReservationSystemASP.Controllers
         }
 
         [HttpGet]
-        public IActionResult Book()
+        public IActionResult Book(SeanseModel seanse)
         {
+            HttpContext.Session.SetInt32("id", seanse.Id);
             return View("BookForm");
         }
         [HttpPost]
-        public IActionResult Add(BookModel book,SeanseModel seanse)
+        public IActionResult Add(BookModel book,IdentityUser identityUser)
         {
-                repository.Add(book,seanse);
+
+            var x = book.Seanse;
+            int? seanseId = HttpContext.Session.GetInt32("id");
+            repository.Add(book,seanseId,identityUser);
+
                 return View("BookingList", repository.FindAll());
         }
         public IActionResult FindAll()

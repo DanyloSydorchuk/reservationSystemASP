@@ -7,16 +7,6 @@
 <h1>Registration</h1>
 <form asp-controller="Registration" asp-action="Registration" method="post">
     <div asp-validation-summary="All"></div>
-    @*<div class="mb-3">
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-        <label asp-for="FirstName">Imię</label>
-        <input class="form-control" asp-for="FirstName" />
-    </div>
-    <div class="mb-3">
-        <span asp-validation-for="Surname" class="text-danger"></span>
-        <label asp-for="Surname">Nazwisko</label>
-        <input class="form-control" asp-for="Surname" />
-    </div>*@
     <div class="mb-3">
         <span asp-validation-for="UserName" class="text-danger"></span>
         <label asp-for="UserName">Login</label>

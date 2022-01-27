@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace ReservationSystemASP.Models.Book
     {
         BookModel FindById(int id);
         BookModel Delete(int id);
-        BookModel Add(BookModel book,SeanseModel seanse);
+        BookModel Add(BookModel book,int? seanseId,IdentityUser identityUser);
         BookModel Update(BookModel book);
 
         IList<BookModel> FindAll();
