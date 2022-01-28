@@ -1,4 +1,3 @@
-# reservationSystemASP
 <h1>Projekt system rezerwacji seansów.</h1>
 Domyślnie stworzony użytkownik z uprawnieniami Admina:<br />
 Login: Admin<br />
