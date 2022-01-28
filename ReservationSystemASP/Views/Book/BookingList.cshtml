@@ -1,22 +1,26 @@
 ﻿@model IList<ReservationSystemASP.Models.BookModel>
 @*.Day . @book.Seanse.Date.Month . @book.Seanse.Date.Year o @book.Seanse.SeanseStart.Hours:@book.Seanse.SeanseStart.Minutes*@
+@{ 
 
+
+}
 <div class="container-fluid m-3">
     <h2>Lista zarezerwowanych seansów</h2>
     <table class="table">
     
        @foreach (var book in Model)
-        {
+       {
+          
             <tr>
                 <td>
-                    Twój numer rezerwacji @book.Id.<br /> Masz zarezerwowane @book.CountPlaces miejsca na seans @book.Seanse
+                    Twój numer rezerwacji @book.Id.<br /> Masz zarezerwowane @book.CountPlaces miejsca na seans @book.Seanse 
                 </td>
                 <td>
-                    <a class="btn btn-primary" asp-controller="Book" asp-action="EditForm" asp-route-id="@book.Id">Edytuj</a>
                     <a class="btn btn-primary" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Odwołaj</a>
                 </td>
             </tr>
-        }
+            
+       }
     
     </table>
 </div>

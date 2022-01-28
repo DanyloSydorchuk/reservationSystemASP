@@ -32,12 +32,21 @@ namespace ReservationSystemASP.Controllers
 
             var x = book.Seanse;
             int? seanseId = HttpContext.Session.GetInt32("id");
-            repository.Add(book,seanseId,identityUser);
+            //repository.Add(book,seanseId,identityUser);
 
+            if (ModelState.IsValid) 
+            {
+                repository.Add(book, seanseId, identityUser);
                 return View("BookingList", repository.FindAll());
+            }
+            else
+            {
+                return View();
+            }
         }
         public IActionResult FindAll()
         {
+            int? seanseId = HttpContext.Session.GetInt32("id");
             return View("BookingList", repository.FindAll());
         }
 

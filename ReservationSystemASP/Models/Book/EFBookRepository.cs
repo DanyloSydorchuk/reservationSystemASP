@@ -15,5 +15,6 @@ namespace ReservationSystemASP.Models.Book
         }
 
         public IQueryable<BookModel> Bookings => _applicationDbContext.Bookings;
+        public IQueryable<SeanseModel> Seanses => _applicationDbContext.Seanses;
     }
 }

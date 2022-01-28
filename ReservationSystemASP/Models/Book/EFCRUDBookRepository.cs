@@ -53,20 +53,28 @@ namespace ReservationSystemASP.Models
             //Task<IdentityResult> result = _userManager.CreateAsync(identityUser, model.Password);
 
             var x = _context.Seanses.Where(x => x.Id.Equals(seanseId)).First();
-            x.CountPlaces -= book.CountPlaces;
-            BookModel booking = new()
-            {
-               Id = book.Id,
-               UserName = identityUser.UserName,
-               Seanse = book.Seanse,
-               CountPlaces = book.CountPlaces
-            };
-            x.Bookings.Add(booking);
-            _context.Seanses.Update(x);
+            if (x.CountPlaces>=book.CountPlaces)
+            { 
+                x.CountPlaces -= book.CountPlaces;
+                BookModel booking = new()
+                {
+                   Id = book.Id,
+                   UserName = identityUser.UserName,
+                   Seanse = book.Seanse,
+                   CountPlaces = book.CountPlaces
+                };
             
-            BookModel entity = _context.Bookings.Add(booking).Entity;
-            _context.SaveChanges();
-            return entity;
+                x.Bookings.Add(booking);
+                _context.Seanses.Update(x);
+                BookModel entity = _context.Bookings.Add(booking).Entity;
+                _context.SaveChanges();
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public BookModel Update(BookModel book)
@@ -84,7 +92,7 @@ namespace ReservationSystemASP.Models
             //var seans = (from b in _context.Bookings
             //             join s in _context.Seanses on b.Seanse.Id equals s.Id
             //             select new { id = b.Id, UserName = b.UserName, SeanseId = s.Id, CountPlaces = b.CountPlaces }).ToList();
-            ////var result = from b in _context.Bookings select b;
+            //var result = from b in _context.Bookings select b;
             //return seans.ToList();
             return _context.Bookings.ToList();
         }

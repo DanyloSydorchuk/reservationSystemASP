@@ -8,5 +8,6 @@ namespace ReservationSystemASP.Models
     public interface IBookRepository
     {
         IQueryable<BookModel> Bookings { get; }
+        IQueryable<SeanseModel> Seanses { get; }
     }
 }

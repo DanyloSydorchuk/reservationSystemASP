@@ -17,7 +17,10 @@
                         Liczba miejsc: @seanse.CountPlaces
                     </td>
                     <td>
-                        <a class="btn btn-primary" asp-controller="Book" asp-action="Book" asp-route-id="@seanse.Id">Zarezerwuj</a>
+                        @if (seanse.CountPlaces > 0) 
+                        { 
+                            <a class="btn btn-primary" asp-controller="Book" asp-action="Book" asp-route-id="@seanse.Id">Zarezerwuj</a>
+                        }
                         @if (User.Identity.Name == "Admin")
                         {
                             <a class="btn btn-primary" asp-controller="Seanse" asp-action="EditForm" asp-route-id="@seanse.Id">Edytuj</a>

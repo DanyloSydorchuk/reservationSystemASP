@@ -29,9 +29,16 @@ namespace ReservationSystemASP.Models
 
         public SeanseModel Add(SeanseModel seanse)
         {
-            var entity = _context.Seanses.Add(seanse).Entity;
-            _context.SaveChanges();
-            return entity;
+            if(seanse.Date>=DateTime.Now && seanse.SeanseStart<seanse.SeanseEnd && seanse.SeanseStart.Hours>= DateTime.Now.Hour) 
+            { 
+                var entity = _context.Seanses.Add(seanse).Entity;
+                _context.SaveChanges();
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public SeanseModel Update(SeanseModel seanse)
@@ -47,16 +54,11 @@ namespace ReservationSystemASP.Models
 
         }
 
-        //public SeanseModel AddBookUpdate(SeanseModel seanse)
-        //{
-        //    EntityEntry<SeanseModel> entityEntry = _context.Seanses.Update(seanse);
-        //    _context.SaveChanges();
-        //    return entityEntry.Entity;
-        //}
-
         public IList<SeanseModel> FindAll()
         {
-            return _context.Seanses.ToList();
+            var seanses = from s in _context.Seanses orderby s.Date, s.SeanseStart select s;
+            return seanses.ToList();
+            //return _context.Seanses.ToList();
         }
     }
 }
