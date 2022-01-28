@@ -29,7 +29,12 @@ namespace ReservationSystemASP.Models
 
         public SeanseModel Add(SeanseModel seanse)
         {
-            if(seanse.Date>=DateTime.Now && seanse.SeanseStart<=seanse.SeanseEnd && seanse.SeanseStart.Hours>= DateTime.Now.Hour) 
+            if(seanse.Date.Date>=DateTime.Now.Date &&
+                seanse.Date.Month >= DateTime.Now.Month &&
+                 seanse.Date.Year >= DateTime.Now.Year &&
+                  seanse.SeanseStart<=seanse.SeanseEnd && 
+                   seanse.SeanseStart.Hours>= DateTime.Now.Hour&&
+                    seanse.SeanseStart.Minutes >= DateTime.Now.Minute) 
             { 
                 var entity = _context.Seanses.Add(seanse).Entity;
                 _context.SaveChanges();

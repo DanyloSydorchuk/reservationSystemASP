@@ -1,7 +1,7 @@
 ﻿@model IList<ReservationSystemASP.Models.BookModel>
 @*.Day . @book.Seanse.Date.Month . @book.Seanse.Date.Year o @book.Seanse.SeanseStart.Hours:@book.Seanse.SeanseStart.Minutes*@
 @{ 
-
+    string username = User.Identity.Name;
 
 }
 <div class="container-fluid m-3">
@@ -10,16 +10,28 @@
     
        @foreach (var book in Model)
        {
-          
-            <tr>
-                <td>
-                    Twój numer rezerwacji @book.Id.<br /> Masz zarezerwowane @book.CountPlaces miejsca na seans @book.Seanse.Date.Day.@book.Seanse.Date.Month.@book.Seanse.Date.Year na @book.Seanse.SeanseStart.Hours:@book.Seanse.SeanseStart.Minutes
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Odwołaj</a>
-                </td>
-            </tr>
-            
+            if (username == book.UserName && username!="Admin") { 
+                <tr>
+                    <td>
+                        Twój numer rezerwacji @book.Id.<br /> Masz zarezerwowane @book.CountPlaces miejsc na seans @book.Seanse.Date.Day.@book.Seanse.Date.Month.@book.Seanse.Date.Year na @book.Seanse.SeanseStart.Hours:@book.Seanse.SeanseStart.Minutes
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Odwołaj</a>
+                    </td>
+                </tr>
+            }
+            if (username == "Admin")
+                {
+                    <tr>
+                        <td>
+                           Numer rezerwacji @book.Id dla @book.UserName.<br /> Zarezerwowane @book.CountPlaces miejsc na seans @book.Seanse.Date.Day.@book.Seanse.Date.Month.@book.Seanse.Date.Year na @book.Seanse.SeanseStart.Hours:@book.Seanse.SeanseStart.Minutes
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Odwołaj</a>
+                        </td>
+                    </tr>
+                }
+
        }
     
     </table>
