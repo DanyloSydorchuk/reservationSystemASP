@@ -10,8 +10,8 @@ using ReservationSystemASP.Models;
 namespace ReservationSystemASP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220125201923_mig")]
-    partial class mig
+    [Migration("20220128123540_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -19,7 +19,7 @@
                     <td>
                         @if (seanse.CountPlaces > 0) 
                         { 
-                            <a class="btn btn-primary" asp-controller="Book" asp-action="Book" asp-route-id="@seanse.Id">Zarezerwuj</a>
+                            <a class="btn btn-primary" asp-controller="Book" asp-action="Book" asp-route-id="@seanse.Id" >Zarezerwuj</a>
                         }
                         @if (User.Identity.Name == "Admin")
                         {

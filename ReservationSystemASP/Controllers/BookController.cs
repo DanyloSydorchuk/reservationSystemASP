@@ -12,12 +12,17 @@ namespace ReservationSystemASP.Controllers
 {
     public class BookController : Controller
     {
+        private UserManager<IdentityUser> _userManager;
+        private SignInManager<IdentityUser> _signInManager;
         private IBookRepository bookRepository;
         private ICRUDBookRepository repository;
-        public BookController(ICRUDBookRepository repository, IBookRepository bookRepository)
+        public BookController(ICRUDBookRepository repository, IBookRepository bookRepository, UserManager<IdentityUser> userManager,
+       SignInManager<IdentityUser> signInManager)
         {
             this.repository = repository;
             this.bookRepository = bookRepository;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
         }
 
         [HttpGet]
@@ -27,16 +32,15 @@ namespace ReservationSystemASP.Controllers
             return View("BookForm");
         }
         [HttpPost]
-        public IActionResult Add(BookModel book,IdentityUser identityUser)
+        public async Task<IActionResult> AddAsync(BookModel book)
         {
 
             var x = book.Seanse;
             int? seanseId = HttpContext.Session.GetInt32("id");
-            //repository.Add(book,seanseId,identityUser);
-
+            IdentityUser identityUser = await _userManager.FindByNameAsync(User.Identity.Name);
             if (ModelState.IsValid) 
             {
-                repository.Add(book, seanseId, identityUser);
+                repository.AddBook(book, seanseId, identityUser);
                 return View("BookingList", repository.FindAll());
             }
             else

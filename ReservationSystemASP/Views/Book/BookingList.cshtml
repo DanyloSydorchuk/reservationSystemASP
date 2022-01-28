@@ -13,7 +13,7 @@
           
             <tr>
                 <td>
-                    Twój numer rezerwacji @book.Id.<br /> Masz zarezerwowane @book.CountPlaces miejsca na seans @book.Seanse 
+                    Twój numer rezerwacji @book.Id.<br /> Masz zarezerwowane @book.CountPlaces miejsca na seans @book.Seanse.Date.Day.@book.Seanse.Date.Month.@book.Seanse.Date.Year na @book.Seanse.SeanseStart.Hours:@book.Seanse.SeanseStart.Minutes
                 </td>
                 <td>
                     <a class="btn btn-primary" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Odwołaj</a>

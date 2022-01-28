@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ReservationSystemASP.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace ReservationSystemASP.Controllers
 {
@@ -36,6 +37,7 @@ namespace ReservationSystemASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
+            //HttpContext.Session.SetString("UserNameIdentity", loginModel.Username.ToString());
             if (ModelState.IsValid)
             {
                 IdentityUser user = await
@@ -49,6 +51,7 @@ namespace ReservationSystemASP.Controllers
                     }
                 }
             }
+            
             ModelState.AddModelError("", "Nieprawidłowa nazwa użytkownika lub hasło");
             return View(loginModel);
         }
@@ -57,5 +60,6 @@ namespace ReservationSystemASP.Controllers
             await _signInManager.SignOutAsync();
             return Redirect(returnUrl);
         }
+
     }
 }

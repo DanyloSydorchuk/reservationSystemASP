@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ReservationSystemASP.Models.Book;
 using System;
@@ -46,8 +47,9 @@ namespace ReservationSystemASP.Models
         }
 
 
-        public BookModel Add(BookModel book, int? seanseId,IdentityUser identityUser)
+        public BookModel AddBook(BookModel book, int? seanseId,IdentityUser identityUser)
         {
+
             //IdentityUser identityUser = new IdentityUser { UserName = model.Username };
             //var user = new IdentityUser { UserName = model.UserName, Email=model.Email, PhoneNumber=model.PhoneNumber };
             //Task<IdentityResult> result = _userManager.CreateAsync(identityUser, model.Password);
@@ -91,10 +93,10 @@ namespace ReservationSystemASP.Models
         {
             //var seans = (from b in _context.Bookings
             //             join s in _context.Seanses on b.Seanse.Id equals s.Id
-            //             select new { id = b.Id, UserName = b.UserName, SeanseId = s.Id, CountPlaces = b.CountPlaces }).ToList();
+            //            select new { id = b.Id, UserName = b.UserName, SeanseId = s.Id, CountPlaces = b.CountPlaces });
             //var result = from b in _context.Bookings select b;
             //return seans.ToList();
-            return _context.Bookings.ToList();
+            return _context.Bookings.Include(x=>x.Seanse).ToList();
         }
     }
 }

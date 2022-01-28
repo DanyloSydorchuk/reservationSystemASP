@@ -75,7 +75,8 @@ namespace ReservationSystemASP.Migrations.AppIdentityDb
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

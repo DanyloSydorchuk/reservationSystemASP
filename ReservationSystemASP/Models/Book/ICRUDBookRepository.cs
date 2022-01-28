@@ -10,7 +10,7 @@ namespace ReservationSystemASP.Models.Book
     {
         BookModel FindById(int id);
         BookModel Delete(int id);
-        BookModel Add(BookModel book,int? seanseId,IdentityUser identityUser);
+        BookModel AddBook(BookModel book,int? seanseId,IdentityUser identityUser);
         BookModel Update(BookModel book);
 
         IList<BookModel> FindAll();

@@ -14,8 +14,8 @@ namespace ReservationSystemASP.Models
     public class LoginModel
     {
 
-        [HiddenInput]
-        public int Id { get; set; }
+        //[HiddenInput]
+        //public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string ReturnUrl { get; set; } = "/";

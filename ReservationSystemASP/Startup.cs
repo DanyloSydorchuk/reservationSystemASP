@@ -44,8 +44,9 @@ namespace ReservationSystemASP
             services.AddTransient<ICRUDBookRepository, EFCRUDBookRepository>();
             services.AddMvc();
             services.AddMemoryCache();
-            services.AddSession();
-            
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
